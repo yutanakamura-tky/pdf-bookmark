@@ -97,7 +97,10 @@ def build_bookmark(tocfile, forwardpages, hidelevel=1):
                     cur_depth = str(last_depth)
                     child_num = childrens["l"+cur_depth]
                     childrens["l"+cur_depth] = 0
-                    childrens["l"+str(depth)] += 1
+                    try:
+                        childrens["l"+str(depth)] += 1
+                    except KeyError:
+                        childrens["l"+str(depth)] = 1                    
                 mark = build_mark(title, page, child_num, depth<=hidelevel)
                 marklist.append(mark)
                 child_num = 0
